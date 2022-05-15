@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Calculate pot odds</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Calculate pot odds</h1>
+<form action="#" th:action="@{/potodds}" th:object="${potdto}" method="post">
+    <p>Pot: <input type="number" step="0.01" th:field="*{pot}" /></p>
+    <p>To Call: <input type="number" step="0.01" th:field="*{toCall}" /></p>
+    <p>Pot odds: <input type="number" step="0.01" th:field="*{result}" /></p>
+    <p><input type="submit" value="Pot odds!" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>
