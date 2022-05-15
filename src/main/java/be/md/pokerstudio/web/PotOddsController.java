@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Controller
@@ -21,7 +22,9 @@ public class PotOddsController {
     public String potOddsSubmit(@ModelAttribute PotDto potDto, Model model) {
         var potOdds = (potDto.getPot().add(potDto.getToCall()))
                 .divide(potDto.getToCall(), RoundingMode.FLOOR);
-        potDto.setResult( potOdds);
+        BigDecimal result = new BigDecimal(100).divide(potOdds,potOdds.scale(),RoundingMode.FLOOR );
+        potDto.setResult(result);
+
         model.addAttribute("potdto", potDto);
         return "potodds";
     }
